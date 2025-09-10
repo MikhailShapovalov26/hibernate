@@ -4,20 +4,12 @@
 `docker-compose up -d`
 2) Далее загрузить все необходимые зависимости через maven
 3) Запустить приложение, таблицы он создаст самостоятельно 
-4) Добавить тестовые данные, для этого была реализован `@PostMapping("/person/add")`
-Добавить тестовые данные через Postman
-```
-POST localhost:8080/person/add
-{
-  "personName": {
-    "name": "Ivan",
-    "surname": "Ivanov",
-    "age": 25
-  },
-  "phoneNumber": "+79991234567",
-  "cityOfLiving": "Moscow"
-}
-```
+4) Самосоятельно подготовить выборку данных для локального тестирования
 5) Запросить через GET список всех пользователей которые живут в городе Москва
-`GET localhost:8080/persons/by-city?city=Moscow`
+`GET localhost:8080/persons/city?city=Москва`
+![img_1.png](img_1.png)
+проверим возраст, вернуть должен меньше указанного с сортировкой
+`GET localhost:8080/person/less-age?age=34`
 ![img.png](img.png)
+`GET localhost:8080/person/name-surname?name=Анна&surname=Смирнова`
+![img_2.png](img_2.png)

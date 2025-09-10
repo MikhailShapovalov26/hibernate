@@ -7,6 +7,7 @@ import ru.netology.hibernet.service.PersonService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -17,14 +18,18 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/persons/by-city")
-    public List<String> randomOrder(@RequestParam String city) {
-        List<String> allPerson = new ArrayList<>();
-        this.personService.getPersonsByCity(city).forEach(person ->
-        {
-            allPerson.add(person.getPersonName().getName());
-        });
-        return allPerson;
+    @GetMapping("/persons/city")
+    public List<Person> getPersonsByCity(@RequestParam String city) {
+        return this.personService.findByCityOfLiving(city);
+    }
+    @GetMapping("/person/less-age")
+    public List<Person> getPersonsByAgeLessThan(@RequestParam int age) {
+        return personService.getPersonsByAgeLessThan(age);
+    }
+
+    @GetMapping("/person/name-surname")
+    public Optional<Person> getPersonsByNameSurname(@RequestParam String name, @RequestParam String surname) {
+        return personService.getPersonsByNameSurname(name, surname);
     }
 
     @PostMapping("/person/add")
