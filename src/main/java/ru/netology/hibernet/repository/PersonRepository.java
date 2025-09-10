@@ -13,11 +13,14 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, PersonName> {
 
-    List<Person> findByCityOfLiving(String city);
+    @Query("SELECT p FROM Person p where p.cityOfLiving = :city")
+    List<Person> CityOfLiving(String city);
 
-    List<Person> findByPersonNameAgeLessThan(int age, Sort sort);
+    @Query("SELECT p FROM Person p where p.personName.age < :age order by p.personName.age")
+    List<Person> PersonNameAgeLessThan(int age);
 
-    Optional<Person> findByPersonNameNameAndPersonNameSurname(String name, String surname);
+    @Query("SELECT p FROM Person p where p.personName.name = :name and p.personName.surname = :surname" )
+    Optional<Person> PersonNameNameAndPersonNameSurname(String name, String surname);
 
 
 }

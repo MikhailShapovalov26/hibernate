@@ -15,20 +15,18 @@ public class PersonService {
         this.repository = repository;
     }
     public List<Person> findByCityOfLiving(String city) {
-        return repository.findByCityOfLiving(city);
+        return repository.CityOfLiving(city);
     }
     public Person savePerson(Person person) {
         return repository.save(person);
     }
 
     public List<Person> getPersonsByAgeLessThan(int age) {
-        return repository.findByPersonNameAgeLessThan(
-                age,
-                Sort.by(Sort.Direction.ASC,
-                "personNameAge"));
+        return repository.PersonNameAgeLessThan(
+                age);
     }
 
     public Optional<Person> getPersonsByNameSurname(String name, String surname) {
-        return repository.findByPersonNameNameAndPersonNameSurname(name, surname);
+        return repository.PersonNameNameAndPersonNameSurname(name, surname);
     }
 }
