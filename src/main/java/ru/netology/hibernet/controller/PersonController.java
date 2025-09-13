@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/persons")
 public class PersonController {
     private final PersonService personService;
 
@@ -18,22 +18,21 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/persons/city")
+    @GetMapping("city")
     public List<Person> getPersonsByCity(@RequestParam String city) {
         return this.personService.findByCityOfLiving(city);
     }
-    @GetMapping("/person/less-age")
+    @GetMapping("less-age")
     public List<Person> getPersonsByAgeLessThan(@RequestParam int age) {
         return personService.getPersonsByAgeLessThan(age);
     }
 
-    @GetMapping("/person/name-surname")
+    @GetMapping("name-surname")
     public Optional<Person> getPersonsByNameSurname(@RequestParam String name, @RequestParam String surname) {
         return personService.getPersonsByNameSurname(name, surname);
     }
-
-    @PostMapping("/person/add")
-    public String addPerson(@RequestBody Person person) {
-        return this.personService.savePerson(person).getPersonName().getName();
+    @GetMapping("/all")
+    public List<Person> getAllPerson() {
+        return personService.allPerson();
     }
 }

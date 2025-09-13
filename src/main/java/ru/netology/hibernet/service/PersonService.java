@@ -7,6 +7,7 @@ import ru.netology.hibernet.repository.PersonRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -28,5 +29,9 @@ public class PersonService {
 
     public Optional<Person> getPersonsByNameSurname(String name, String surname) {
         return repository.PersonNameNameAndPersonNameSurname(name, surname);
+    }
+
+    public List<Person> allPerson() {
+        return repository.allPerson();
     }
 }

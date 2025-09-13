@@ -23,4 +23,6 @@ public interface PersonRepository extends CrudRepository<Person, PersonName> {
     Optional<Person> PersonNameNameAndPersonNameSurname(String name, String surname);
 
 
+@Query("SELECT p from Person p")
+    List<Person> allPerson();
 }
